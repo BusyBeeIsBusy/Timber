@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Test Park",
+        "city": "Indianaplois",
+        "state": "Indiana",
+        "zip": 47303,
+        "address": "2355 E 75 S",
+        "open_hour": "0900",
+        "close_hour": "2100",
+        "price": 1,
+        "images": ["test_park_1", "test_park_2"]
+    },
+    {
+        "name": "Test Trail",
+        "city": "Indianaplois",
+        "state": "Indiana",
+        "zip": 47303,
+        "address": "2355 E 75 S",
+        "open_hour": "0900",
+        "close_hour": "2100",
+        "price": 1,
+
+        "images": ["test_trail_1", "test_trail_2"]
+    },
+    {
+        "name": "Mounds State Park",
+        "city": "Indianaplois",
+        "state": "Indiana",
+        "zip": 47303,
+        "address": "2355 E 75 S",
+        "open_hour": "0900",
+        "close_hour": "2100",
+        "price": 1,
+        "images": ["mounds_1", "mounds_2"]
+    },
+    {
+        "name": "Chain O Lakes State Park",
+        "city": "Albion",
+        "state": "Indiana",
+        "zip": 46701,
+        "address": "2355 E 75 S",
+        "open_hour": "0700",
+        "close_hour": "2300",
+        "price": 7,
+        "images": ["chain_o_lakes_1", "chain_o_lakes_2"]
+    }
+]
