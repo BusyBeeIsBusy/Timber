@@ -1,14 +1,13 @@
-[
-    {
-        "name": "Test Park",
+[{
+        "name": "Fort Harrison State Park",
         "city": "Indianaplois",
         "state": "Indiana",
-        "zip": 47303,
-        "address": "2355 E 75 S",
-        "open_hour": "0900",
-        "close_hour": "2100",
-        "price": 1,
-        "images": ["test_park_1", "test_park_2"]
+        "zip": 46216,
+        "address": "5753 Glenn Road",
+        "open_hour": "0700",
+        "close_hour": "2000",
+        "price": 7,
+        "images": ["harrison_1", "harrison_2", "harrison_3", "harrison_4", "harrison_5", "harrison_6", "harrison_7", "harrison_8", "harrison_9", "harrison_10", "harrison_11", "harrison_12", "harrison_13", "harrison_14", "harrison_15", "harrison_16", "harrison_17", "harrison_18", "harrison_19", "harrison_20", "harrison_21", "harrison_22", "harrison_23"]
     },
     {
         "name": "Test Trail",

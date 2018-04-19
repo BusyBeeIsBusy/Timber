@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     function SetSwipePicture(parkIndex, pictureIndex) {
-        $(".parkImage").css("background-image", "url(resources/images/park-pictures/" + RawParkList[0].images[pictureIndex] + ".jpg)");
+        $(".parkImage").css("background-image", "url(resources/images/park-pictures/" + RawParkList[0].images[pictureIndex] + ".png)");
 
     }
 
@@ -51,6 +51,8 @@ $(document).ready(function () {
     })
 
     $("#yes").click(function () {
+        currentParkPicIndex = 0;
+        console.log(currentParkPicIndex)
         YesList.push(RawParkList[currentParkIndex]);
         (RawParkList.splice(currentParkIndex, 1));
 
@@ -62,7 +64,6 @@ $(document).ready(function () {
         $("#newParkNum").html(RawParkList.length)
 
         console.log(RawParkList)
-        console.log(currentParkIndex)
         $("#parkName").html(RawParkList[0].name)
         $("#parkName").html(RawParkList[0].name)
 
@@ -74,7 +75,7 @@ $(document).ready(function () {
             $("#closingTime").html(YesList[0].close_hour);
             $("#location").html(YesList[0].address + ", " + YesList[0].city + ", " + YesList[0].state + " " + YesList[0].zip)
             $("#price").html(YesList[0].price);
-            $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + YesList[0].images[0] + ".jpg)");
+            $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + YesList[0].images[0] + ".png)");
         }
 
 
@@ -107,7 +108,7 @@ $(document).ready(function () {
         $("#closingTime").html(YesList[yesParkIndex].close_hour);
         $("#location").html(YesList[yesParkIndex].address + ", " + YesList[yesParkIndex].city + ", " + YesList[yesParkIndex].state + " " + YesList[yesParkIndex].zip)
         $("#price").html(YesList[yesParkIndex].price);
-        $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + YesList[yesParkIndex].images[0] + ".jpg)");
+        $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + YesList[yesParkIndex].images[0] + ".png)");
     })
 
     $("#myParks #left-arrow").click(function () {
@@ -118,6 +119,6 @@ $(document).ready(function () {
         $("#closingTime").html(YesList[yesParkIndex].close_hour);
         $("#location").html(YesList[yesParkIndex].address + ", " + YesList[yesParkIndex].city + ", " + YesList[yesParkIndex].state + " " + YesList[yesParkIndex].zip)
         $("#price").html(YesList[yesParkIndex].price);
-        $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + YesList[yesParkIndex].images[0] + ".jpg)");
+        $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + YesList[yesParkIndex].images[0] + ".png)");
     })
 })
