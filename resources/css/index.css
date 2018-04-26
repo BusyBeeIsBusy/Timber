@@ -1614,8 +1614,8 @@ a {
 
 .w3-pale-brown,
 .w3-hover-pale-brown:hover{
-    color: #fff !important;
-    background-color: #996666 !important
+    color: #000 !important;
+   background-color: #bba99e;
 }
 
 .w3-text-amber,
