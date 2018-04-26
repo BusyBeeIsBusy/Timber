@@ -1,138 +1,137 @@
-$(document).ready(function () {
-    $(".yesParkImage").css("background-image", "url(resources/images/frown.png)");
-    $(".yesParkImage").after("<p id='emptyMessage'>No Parks To Show</p>")
-
-    function SetSwipePicture(parkIndex, pictureIndex) {
-        $(".parkImage").css("background-image", "url(resources/images/park-pictures/" + RawParkList[0].images[pictureIndex] + ")");
-
-    }
-
-    var RawParkList = new Array();
-    var YesList = new Array();
-    var NoList = new Array();
+function RetrieveParkInformation() {
     var fileInforamtion = "";
-    var parkInfoFileLocation = "resources/data/park-info.json"
-    var currentParkIndex = 0;
-    var currentParkPicIndex = 0
-    var yesParkIndex = 0;
+    var pathToParkInfo = "resources/data/park-info.json"
 
     $.ajax({
-        url: parkInfoFileLocation,
+        url: pathToParkInfo,
         dataType: 'json',
         async: false,
         success: function (data) {
-            console.log(data)
             fileInforamtion = data;
         }
     });
 
-    fileInforamtion.forEach(function (park) {
-        RawParkList.push(park);
+    return fileInforamtion
+}
+
+function CreateRawParkList() {
+    var ParkList = new Array();
+    var fileInformation = RetrieveParkInformation();
+
+    fileInformation.forEach(function (park) {
+        ParkList.push(park);
     });
 
-    $("#myParkNum").html(YesList.length);
-    $("#newParkNum").html(RawParkList.length)
+    return ParkList;
+}
 
-    SetSwipePicture(currentParkIndex, currentParkPicIndex);
+function SetHeaderInfo(yesList, rawParkList) {
+    $("#myParkNum").html(yesList.length);
+    $("#newParkNum").html(rawParkList.length)
+}
+
+function SetSwipePicture(parkList, pictureIndex) {
+    var pathToParkPictures = "resources/images/park-pictures/";
+    var thisPark = parkList[0];
+    $(".parkImage").css("background-image", "url(" + pathToParkPictures + thisPark.images[pictureIndex] + ")");
+}
+
+function SetEmptyContainer(container, textField) {
+    $(container).css("background-image", "url(resources/images/frown.png)");
+    if (textField == null) {
+        $(container).after("<p id='emptyMessage'>No Parks To Show</p>")
+
+    } else {
+        $("#parkName").html("No Parks Left To Show")
+        $("#parkName").css("color", "red");
+    }
+
+}
+
+function SetMyParksContainerInfo(parkList, index) {
+    var thisPark = parkList[index]
+    var nextPark = [parkList[index + 1]]
+    console.log(thisPark)
+
+    $("#yesParkName").html(thisPark.name)
+    $("#openTime").html(thisPark.open_hour)
+    $("#closingTime").html(thisPark.close_hour);
+    $("#location").html(thisPark.address + ", " + thisPark.city + ", " + thisPark.state + " " + thisPark.zip)
+    $("#price").html(thisPark.price);
+    $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + thisPark.images[0] + ")");
+}
+
+function AddToList(parkList, rawParkList) {
+    $("#emptyMessage").remove();
+    parkList.push(rawParkList[0]);
+    (rawParkList.splice(0, 1));
+    $("#parkName").html(rawParkList[0].name)
+}
+
+$(document).ready(function () {
+
+    var YesList = new Array();
+    var NoList = new Array();
+    var currentParkPicIndex = 0
+    var yesParkIndex = 0;
+
+    var RawParkList = CreateRawParkList();
+
+    SetEmptyContainer($(".yesParkImage"))
+    SetHeaderInfo(YesList, RawParkList);
+    SetSwipePicture(RawParkList, currentParkPicIndex);
+
     $("#parkName").html(RawParkList[0].name)
 
     $("#yes").click(function () {
         if (RawParkList.length > 1) {
-            $("#emptyMessage").remove();
             currentParkPicIndex = 0;
-            YesList.push(RawParkList[currentParkIndex]);
-            (RawParkList.splice(currentParkIndex, 1));
+            AddToList(YesList, RawParkList)
 
-            currentParkPicIndex = 0;
-            SetSwipePicture(0, currentParkPicIndex);
-
-            // currentPark Index Never Changes?
-            $("#myParkNum").html(YesList.length);
-            $("#newParkNum").html(RawParkList.length)
-
-            $("#parkName").html(RawParkList[0].name)
-
+            SetSwipePicture(RawParkList, currentParkPicIndex);
+            SetHeaderInfo(YesList, RawParkList);
             if ($("#yesParkName").html() == "") {
-                $("#openTime").html(YesList[0].open_hour)
-                $("#closingTime").html(YesList[0].close_hour);
-                $("#location").html(YesList[0].address + ", " + YesList[0].city + ", " + YesList[0].state + " " + YesList[0].zip)
-                $("#price").html(YesList[0].price);
-                $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + YesList[0].images[0] + ")");
+                SetMyParksContainerInfo(YesList, 0)
             }
         } else {
             currentParkPicIndex = 0;
-            YesList.push(RawParkList[currentParkIndex]);
-            (RawParkList.splice(currentParkIndex, 1));
-            $(".parkImage").css("background-image", "url(resources/images/frown.png)");
-            $("#parkName").html("No Parks Left To Show")
-            $("#parkName").css("color", "red");
-            $("#myParkNum").html(YesList.length);
-            $("#newParkNum").html(RawParkList.length)
-            
+            YesList.push(RawParkList[0]);
+            (RawParkList.splice(0, 1));
+            SetEmptyContainer($(".parkImage"), $("#parkName"))
+            SetHeaderInfo(YesList, RawParkList);
         }
-        console.log(RawParkList)
     })
 
     $("#no").click(function () {
         if (RawParkList.length > 1) {
-            $("#emptyMessage").remove();
-            NoList.push(RawParkList[currentParkIndex]);
-            (RawParkList.splice(currentParkIndex, 1));
-
             currentParkPicIndex = 0;
-            SetSwipePicture(0, currentParkPicIndex);
-
-            $("#myParkNum").html(YesList.length);
-            $("#newParkNum").html(RawParkList.length)
-   
-
-            $("#parkName").html(RawParkList[0].name)
-
+            AddToList(NoList, RawParkList)
+            SetSwipePicture(RawParkList, currentParkPicIndex);
+            SetHeaderInfo(YesList, RawParkList);
         } else {
-            $(".parkImage").css("background-image", "url(resources/images/frown.png)");
-            $("#parkName").html("No Parks Left To Show")
-            $("#parkName").css("color", "red");
-            $("#myParkNum").html(YesList.length);
-            $("#newParkNum").html(RawParkList.length)
+            SetEmptyContainer($(".parkImage"), $("#parkName"))
+            SetHeaderInfo(YesList, RawParkList);
         }
     })
 
     $(".myParkArrows#right-arrow").click(function () {
-        try {
-            yesParkIndex++;
-            $("#yesParkName").html(YesList[yesParkIndex].name)
-            $("#openTime").html(YesList[yesParkIndex].open_hour)
-            $("#closingTime").html(YesList[yesParkIndex].close_hour);
-            $("#location").html(YesList[yesParkIndex].address + ", " + YesList[yesParkIndex].city + ", " + YesList[yesParkIndex].state + " " + YesList[yesParkIndex].zip)
-            $("#price").html(YesList[yesParkIndex].price);
-            $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + YesList[yesParkIndex].images[0] + ")");
-        } catch (error) {
-            yesParkIndex--;
-        }
+        yesParkIndex++;
+        SetMyParksContainerInfo(YesList, yesParkIndex);
     })
 
     $(".myParkArrows#left-arrow").click(function () {
-        try {
-            yesParkIndex--;
-            $("#yesParkName").html(YesList[yesParkIndex].name)
-            $("#openTime").html(YesList[yesParkIndex].open_hour)
-            $("#closingTime").html(YesList[yesParkIndex].close_hour);
-            $("#location").html(YesList[yesParkIndex].address + ", " + YesList[yesParkIndex].city + ", " + YesList[yesParkIndex].state + " " + YesList[yesParkIndex].zip)
-            $("#price").html(YesList[yesParkIndex].price);
-            $(".yesParkImage").css("background-image", "url(resources/images/park-pictures/" + YesList[yesParkIndex].images[0] + ")");
-        } catch (error) {
-            yesParkIndex++;
-        }
+        yesParkIndex--;
+        SetMyParksContainerInfo(YesList, yesParkIndex);
     })
 
     $(".findArrows#right-arrow").click(function () {
         currentParkPicIndex++;
-        SetSwipePicture(currentParkIndex, currentParkPicIndex);
+        SetSwipePicture(RawParkList, currentParkPicIndex);
 
     })
 
     $(".findArrows#left-arrow").click(function () {
         currentParkPicIndex--;
-        SetSwipePicture(currentParkIndex, currentParkPicIndex);
+        SetSwipePicture(RawParkList, currentParkPicIndex);
     })
 })
