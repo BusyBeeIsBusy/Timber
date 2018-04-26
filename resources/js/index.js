@@ -115,13 +115,21 @@ $(document).ready(function () {
     })
 
     $(".myParkArrows#right-arrow").click(function () {
-        yesParkIndex++;
-        SetMyParksContainerInfo(YesList, yesParkIndex);
+        try {
+            yesParkIndex++;
+            SetMyParksContainerInfo(YesList, yesParkIndex);
+        } catch (error) {
+            yesParkIndex--
+        }
     })
 
     $(".myParkArrows#left-arrow").click(function () {
-        yesParkIndex--;
-        SetMyParksContainerInfo(YesList, yesParkIndex);
+        try {
+            yesParkIndex--;
+            SetMyParksContainerInfo(YesList, yesParkIndex);
+        } catch (error) {
+            yesParkIndex++;
+        }
     })
 
     $(".findArrows#right-arrow").click(function () {
