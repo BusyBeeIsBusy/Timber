@@ -10,15 +10,15 @@
         "images": ["harrison_1.png", "harrison_2.png", "harrison_3.png", "harrison_4.png", "harrison_5.png", "harrison_6.png", "harrison_7.png", "harrison_8.png", "harrison_9.png", "harrison_10.png", "harrison_11.png", "harrison_12.png", "harrison_13.png", "harrison_14.png", "harrison_15.png", "harrison_16.png", "harrison_17.png", "harrison_18.png", "harrison_19.png", "harrison_20.png", "harrison_21.png", "harrison_22.png", "harrison_23.png"]
     },
     {
-        "name": "Mounds State Park",
-        "city": "Anderson",
+        "name": "Indiana Dunes State Park",
+        "city": "Porter",
         "state": "Indiana",
-        "zip": 46017,
-        "address": "4306 Mounds Road",
-        "open_hour": "0700",
+        "zip": 46304,
+        "address": "1215 North Indiana State Road 49",
+        "open_hour": "0600",
         "close_hour": "2300",
         "price": 7,
-        "images": ["mounds_1.jpg", "mounds_2.jpg", "mounds_3.jpg","mounds_4.jpg"]
+        "images": ["indiana_dunes_1.jpg", "indiana_dunes_2.jpg", "indiana_dunes_3.jpg","indiana_dunes_4.jpg"]
     },
     {
         "name": "Summit Lake State Park",
