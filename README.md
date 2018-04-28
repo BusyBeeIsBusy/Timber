@@ -7,10 +7,16 @@ Marley Powers
 
 Gestwiki CS 345 - Human-Computer Interaction 
 
+Completed 4.26.18
+
 Build Instructions
     1.) Naviate to index.html in the Timber folder
-    2.) Open the file by either double clicking it or dragging it into a browser
-    NOTE: Timber doesn't work on Chrome, and works best on Firefix do to how the browser reads local files
+   
+   2.) Open the file by either double clicking it or dragging it into a browser
+   
+   NOTE: Timber doesn't work on Chrome, and works best on Firefix do to how the browser reads local files
+
+
 
 
 
