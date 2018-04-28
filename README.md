@@ -20,5 +20,5 @@ Legal Rights
 Complile Warners/Suppressions
     Chrome has an issue when reading local files without them being hosted on a localhost. For that reason. we do no reccommend using chrome.
 
-    The styling for our site is done with a primarily with a W3C template. In regards to this, the company states "You are free to modify, save, share, and use them in all your projects."
+    The styling for our site is done with a primarily with W3C code. In regards to this, the company states "You are free to modify, save, share, and use them in all your projects."
 
